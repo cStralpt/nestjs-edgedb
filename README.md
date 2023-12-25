@@ -25,7 +25,8 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-.env
+
+[.env]
 
 ```
 JWT_SECRET='our-secret'
