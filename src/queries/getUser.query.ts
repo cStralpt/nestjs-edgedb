@@ -3,6 +3,7 @@
 import type { Executor } from 'edgedb';
 
 export type GetUserReturns = {
+  id: string;
   username: string;
   password: string;
 }[];
@@ -13,8 +14,7 @@ export async function getUser(
 ): Promise<GetUserReturns> {
   return client.query(`\
 select User {
-    username,
-    password
+    *
   } 
 filter User.username = "${userData.username}"
 `);
