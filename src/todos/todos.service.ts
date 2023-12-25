@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import * as edgedb from 'edgedb';
 import { Todos } from 'dbschema/interfaces';
+import { client } from 'src/lib/edgedb';
+import { addTodo } from 'src/queries/addTodo.query';
+import { deleteTodo } from 'src/queries/deleteTodo.query';
 
 @Injectable()
 export class TodosService {
   async getTodos() {
-    const client = edgedb.createClient();
     const result = await client.query<Todos>(`
       select Todos {
       name,
@@ -15,5 +16,13 @@ export class TodosService {
 
     const todos: Todos[] = result;
     return todos[0];
+  }
+  async addTodo() {
+    const result = await addTodo(client);
+    return result;
+  }
+  async deleteTodo() {
+    const result = await deleteTodo(client);
+    return result;
   }
 }

@@ -9,4 +9,12 @@ export class TodosController {
     console.log({ todo: this.todosService.getTodos() });
     return this.todosService.getTodos();
   }
+  @Get('add-todo')
+  addTodo() {
+    return this.todosService.addTodo();
+  }
+  @Get('delete-todo')
+  deleteTodo() {
+    return this.todosService.deleteTodo();
+  }
 }
